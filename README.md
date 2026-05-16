@@ -6,7 +6,7 @@
 
 **Live system stats, right in your macOS menu bar.**
 
-Battery · CPU · Memory · Network · Disk · Bluetooth — at a glance, no clicking required.
+Battery · CPU · Memory · Network · Disk · Bluetooth — at a glance, no clicking required (but you can hover).
 
 </div>
 
@@ -25,13 +25,13 @@ that no other tool supports** — by talking to the standard BLE Battery Service
 
 ## Features
 
-- **At-a-glance menu bar** — every enabled stat renders inline next to the clock. No click needed.
+- **At-a-glance menu bar** — every enabled stat renders inline next to the clock. 
 - **Six stats** — Battery, CPU, Memory, Network throughput, Disk I/O, Bluetooth.
 - **Bluetooth battery for real** — AirPods/Beats via Apple's Continuity BLE advertisements, and *any* device that publishes the standard GATT Battery Service (`0x180F`) — most modern earbuds, controllers, and BLE peripherals.
 - **Priority device** — pin one Bluetooth device so the menu bar always shows its battery and icon.
 - **Per-stat refresh rates** — Realtime / Standard / Low Power presets, or custom 1–120s intervals per stat.
 - **Deeply customizable** — display mode, separators, colors, weight, spacing, accent themes, popover material (tinted / frosted / solid), density, an optional background pill, and toggleable animations.
-- **Light footprint** — ~27 MB physical memory; BLE radios released when not in use.
+- **Light footprint** — ~27 MB physical memory; BLE radios released when not in use. custom update times based on user preference 
 - **Hover to open**, tap-away to close, launch at login, native About panel.
 
 <div align="center">
@@ -45,6 +45,8 @@ that no other tool supports** — by talking to the standard BLE Battery Service
 - To build: Xcode 15+ and [XcodeGen](https://github.com/yonyz/XcodeGen)
 
 ## Install
+
+like every other 3P app..... 
 
 Download `MUBAR.dmg` from [Releases](../../releases), open it, and drag **MUBAR**
 onto the **Applications** folder.
@@ -93,7 +95,7 @@ swift tools/make_icon.swift            # regenerate the app icon set
 swift tools/make_dmg_background.swift  # regenerate the DMG background
 ```
 
-## How Bluetooth battery works
+## How Bluetooth battery works (this was a real pain since claude didnt want to help :/)
 
 macOS keeps device battery levels inside `bluetoothd` and exposes them to
 first-party apps (Control Center) through entitlement-gated private APIs that
@@ -105,8 +107,7 @@ third-party apps cannot use. MUBAR gets the data anyway, from public sources:
 | Earbuds / peripherals with BLE | Standard GATT **Battery Service** `0x180F`, characteristic `0x2A19` |
 | Classic-BT devices | `system_profiler SPBluetoothDataType` + the `com.apple.Bluetooth` device cache + `IORegistry` |
 
-This is why MUBAR can show battery for devices that AirBattery, MagicPods, and
-similar tools don't — it isn't limited to Apple devices.
+it isn't limited to Apple devices. This probably will break when apple updates their mac stuff but i use this personally so i will fix it probably.
 
 ## Architecture
 
